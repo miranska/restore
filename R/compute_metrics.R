@@ -1,7 +1,5 @@
 # compute metrics based on joined dataset
 # compute the ratio of magnitudes
-# TODO: this will not work when x or y is equal to 0
-# TODO: also, what to do if we have positive and negative numbers? E.g. 100 and -100, as abs(-100/100) = 1
 magnitude_ratio <- function(x, y) {
   # if x and y are numbers
   if (is.na(x)  | is.na(y)) {
