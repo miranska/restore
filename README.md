@@ -18,7 +18,7 @@ We are working on porting the code from a private Github repo to this one; pleas
 
 ## Getting Started
 
-These instructions will show you how to instal the RESTORE package directly from GitHub, and how to run RESTORE on your local machine for development and testing purposes.
+These instructions will show you how to instal the RESTORE package from GitHub, and how to run RESTORE on your local machine for development and testing purposes.
 
 ### Prerequisites
 
