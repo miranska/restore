@@ -22,7 +22,7 @@ These instructions will show you how to instal the RESTORE package from GitHub, 
 
 ### Prerequisites
 
-You need to install `devtools` first in R to install the package from a local folder.
+You need to install `devtools` first in R to install the package.
 
 ```
 install.packages('devtools')
