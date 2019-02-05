@@ -1,0 +1,26 @@
+Package: RESTORE
+Type: Package
+Title: Regression testing for dataset migration
+Version: 0.1.0
+Author: Andriy Miranskyy and Lei Zhang
+Maintainer: Andriy Miranskyy <avm@ryerson.ca> and Lei Zhang <leizhang@ryerson.ca>
+Description: This is a package of regression testing for dataset migration. Given a scenario where a legacy dataset will be replaced by a target dataset, we will analyze the difference between them based on following tests:
+   1. Distribution test: Kolmogorov-Smirnov test.
+   2. Correlation tests: Pearson correlation coefficient and Spearman's correlation.
+   3. Mean relative errors.
+   4. The difference between two hierarchical pairs in Spearman's test.
+   5. Features that have NA values.
+   6. Hybrid tests, which shows features that appear in Kolmogorov-Smirnov test, mean relative error test, and correlation tests.
+   The final report will be written into a user-specified xlsx file or an object (which is stored in an RData file). Users can choose the test results produced in the final report. 
+Imports:
+    data.table,
+    glue,
+    openxlsx,
+    dplyr,
+    tidyr,
+    readr,
+    testthat
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
