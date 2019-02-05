@@ -83,6 +83,10 @@ test_two_datasets(legacy_file = legacy_file,
 
 This project is licensed under the GPL-3
 
+## Contact Us
+
+If you have a found a bug or came up with a new feature -- please open an [issue](https://github.com/miranska/restore/issues).
+
 ## Acknowledgments
 
 * This work was partially supported and funded by Natural Sciences and Engineering Research Council of Canada, Ontario Centres of Excellence, and Environics Analytics. We thank employees of Environics Analytics for their valuable feedback!
