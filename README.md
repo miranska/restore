@@ -18,7 +18,7 @@ We are working on porting the code from a private Github repo to this one; pleas
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+These instructions will show you how to instal the RESTORE package directly from GitHub, and how to run RESTORE on your local machine for development and testing purposes.
 
 ### Prerequisites
 
@@ -30,15 +30,19 @@ install.packages('devtools')
 
 ### Installing
 
+To install it directly from GitHub:
+```
+devtools::install_github("https://github.com/miranska/restore")
+```
+
 To install it locally:
 
 1. Download the source code from GitHub
 2. In R console, run the following command:
+
 ```
 devtools::install("The full path of the source code", repos=NULL, type='source')
 ```
-
-Note that we can only install the package from a local machine because the project is currently maintained in a private repository. After the project is released to public, we may use `devtools::install_git` to install the package.
 
 ## Running the tests
 
