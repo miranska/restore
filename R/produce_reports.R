@@ -8,30 +8,15 @@ produce_reports <-
            report_join,
            report_hybrid,
            report_magnitude,
-           report_mre, 
-           report_spearman, 
-           report_pearson, 
-           report_distribution, 
-           report_rank, 
-           report_spearman_diff, 
+           report_mre,
+           report_spearman,
+           report_pearson,
+           report_distribution,
+           report_rank,
+           report_spearman_diff,
            report_na,
-           report_var_attr
-           ) {
-    if (is.null(final_report) && !is.null(final_data)) {
-      # return object
-      list_of_datasets <- list(
-        "Joined Metrics" = jm$dat_joined_metrics,
-        "Hybrid Alerts" = em$alert_hybrid,
-        "MRE Alerts" = em$alert_mre,
-        "Spearman Alerts" = em$alert_spearman,
-        "Pearson Alerts" = em$alert_pearson,
-        "Distribution Alerts" = em$alert_distribution,
-        "Appearances" = em$total_appear,
-        "Spearman Difference" = em$spearman_hierarchy,
-        "NA Features" = em$na_offenders_report
-      )
-      return(list_of_datasets)
-    } else if (!is.null(final_report) && is.null(final_data)) {
+           report_var_attr) {
+    if (!is.null(final_report) && is.null(final_data)) {
       # write to xlsx file
       ########################################
       # write all results to an xlsx file
@@ -84,18 +69,19 @@ produce_reports <-
         addWorksheet(wb, "Ranking")
         writeData(wb, "Ranking", em$total_appear)
       }
-      # 9.create tab for features with na values 
+      # 9.create tab for features with na values
       if (report_na == TRUE) {
         addWorksheet(wb, "NA Features")
         writeData(wb, "NA Features", em$na_offenders_report)
       }
-      
-      #10.report variable attributes 
-      if(report_var_attr  == TRUE){
+      #10.report variable attributes
+      if (report_var_attr  == TRUE) {
         addWorksheet(wb, "Variable Attributes")
         
-        count_of_columns_missing_in_old_dataset <-  length(hm$columns_absent_in_dat_old)
-        count_of_columns_missing_in_new_dataset <-  length(hm$columns_absent_in_dat_new)
+        count_of_columns_missing_in_old_dataset <-
+          length(hm$columns_absent_in_dat_old)
+        count_of_columns_missing_in_new_dataset <-
+          length(hm$columns_absent_in_dat_new)
         
         attr_report <- data.frame(
           "Description"  = c(
@@ -128,27 +114,37 @@ produce_reports <-
         
         addWorksheet(wb, "Missing Column Names")
         
+        missing_columns <-
+          data.frame("Absent in" = c(), "Column Name" = c())
         
-        missing_columns <- data.frame("Absent in" = c(), "Column Name" = c())
-        
-        if(count_of_columns_missing_in_old_dataset > 0){
-          missing_columns <- rbind(missing_columns,
-            data.frame("Absent in" = "Old",
-                       "Column Name" = hm$columns_absent_in_dat_old
-            )) 
+        if (count_of_columns_missing_in_old_dataset > 0) {
+          missing_columns <- rbind(
+            missing_columns,
+            data.frame(
+              "Absent in" = "Old",
+              "Column Name" = hm$columns_absent_in_dat_old
+            )
+          )
         }
-        if(count_of_columns_missing_in_new_dataset > 0){
-          missing_columns <- rbind(missing_columns,
-            data.frame("Absent in" = "New",
-                       "Column Name" = hm$columns_absent_in_dat_new 
-            ))
+        if (count_of_columns_missing_in_new_dataset > 0) {
+          missing_columns <- rbind(
+            missing_columns,
+            data.frame(
+              "Absent in" = "New",
+              "Column Name" = hm$columns_absent_in_dat_new
+            )
+          )
         }
-        if(nrow(missing_columns) == 0){
-          missing_columns <- data.frame("Absent in" = c('None'), "Column Name" = c('No missing columns'))
+        if (nrow(missing_columns) == 0) {
+          missing_columns <-
+            data.frame(
+              "Absent in" = c('None'),
+              "Column Name" = c('No missing columns')
+            )
         }
         
         writeData(wb, "Missing Column Names", missing_columns)
-
+        
       }
       
       # write the final results
@@ -156,6 +152,23 @@ produce_reports <-
       
       # return null
       return(NULL)
+      
+    } else if (is.null(final_report) && !is.null(final_data)) {
+      # return object
+      list_of_datasets <- list(
+        "Joined Metrics" = jm$dat_joined_metrics,
+        "Hybrid Alerts" = em$alert_hybrid,
+        "Magnitude Alerts" = em$alert_magnitude,
+        "MRE Alerts" = em$alert_mre,
+        "Spearman Alerts" = em$alert_spearman,
+        "Pearson Alerts" = em$alert_pearson,
+        "Distribution Alerts" = em$alert_distribution,
+        "Spearman Difference" = em$spearman_hierarchy,
+        "Ranking" = em$total_appear,
+        "NA Features" = em$na_offenders_report
+      )
+      return(list_of_datasets)
+      
     } else {
       stop("Please provide only final_report or final_data.")
     }
