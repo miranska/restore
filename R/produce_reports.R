@@ -78,11 +78,6 @@ produce_reports <-
       if (report_var_attr  == TRUE) {
         addWorksheet(wb, "Variable Attributes")
         
-        count_of_columns_missing_in_old_dataset <-
-          length(hm$columns_absent_in_dat_old)
-        count_of_columns_missing_in_new_dataset <-
-          length(hm$columns_absent_in_dat_new)
-        
         attr_report <- data.frame(
           "Description"  = c(
             "Count of rows in non-joined datasets",
@@ -100,13 +95,13 @@ produce_reports <-
             hm$dat_old.row_count,
             hm$dat_old.row_count_not_in_join,
             hm$dat_old.col_count,
-            count_of_columns_missing_in_old_dataset
+            hm$count_of_columns_missing_in_old_dataset
           ),
           "New Vintage" = c(
             hm$dat_new.row_count,
             hm$dat_new.row_count_not_in_join,
             hm$dat_new.col_count,
-            count_of_columns_missing_in_new_dataset
+            hm$count_of_columns_missing_in_new_dataset
           )
         )
         
@@ -117,7 +112,7 @@ produce_reports <-
         missing_columns <-
           data.frame("Absent in" = c(), "Column Name" = c())
         
-        if (count_of_columns_missing_in_old_dataset > 0) {
+        if (hm$count_of_columns_missing_in_old_dataset > 0) {
           missing_columns <- rbind(
             missing_columns,
             data.frame(
@@ -126,7 +121,7 @@ produce_reports <-
             )
           )
         }
-        if (count_of_columns_missing_in_new_dataset > 0) {
+        if (hm$count_of_columns_missing_in_new_dataset > 0) {
           missing_columns <- rbind(
             missing_columns,
             data.frame(
@@ -154,13 +149,6 @@ produce_reports <-
       return(NULL)
       
     } else if (is.null(final_report) && !is.null(final_data)) {
-      # append two new variables in hm     
-      count_of_columns_missing_in_old_dataset <-
-        length(hm$columns_absent_in_dat_old)
-      count_of_columns_missing_in_new_dataset <-
-        length(hm$columns_absent_in_dat_new)
-      hm <- c(hm, count_of_columns_missing_in_old_dataset = count_of_columns_missing_in_old_dataset) 
-      hm <- c(hm, count_of_columns_missing_in_old_dataset = count_of_columns_missing_in_new_dataset) 
 
       # return object
       list_of_datasets <- list(

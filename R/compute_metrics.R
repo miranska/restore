@@ -172,8 +172,13 @@ compute_high_level_metrics <- function(dat_old, dat_new, count_of_joined_rows) {
   columns_absent_in_dat_old <-
     setdiff(dat_new.col_names, dat_old.col_names)
   
+  #compute summary stats for absent columns
   no_columns_missing <-ifelse(length(columns_absent_in_dat_old) == 0 &
-                                length(columns_absent_in_dat_new) == 0, T, F)
+    length(columns_absent_in_dat_new) == 0, T, F)
+  count_of_columns_missing_in_old_dataset <-
+    length(columns_absent_in_dat_old)
+  count_of_columns_missing_in_new_dataset <-
+    length(columns_absent_in_dat_new)
   
   list(
     dat_old.row_count = dat_old.row_count,
@@ -190,7 +195,10 @@ compute_high_level_metrics <- function(dat_old, dat_new, count_of_joined_rows) {
     
     columns_absent_in_dat_new = columns_absent_in_dat_new,
     columns_absent_in_dat_old = columns_absent_in_dat_old,
-    no_columns_missing = no_columns_missing
+    no_columns_missing = no_columns_missing,
+    count_of_columns_missing_in_old_dataset = count_of_columns_missing_in_old_dataset,
+    count_of_columns_missing_in_new_dataset = count_of_columns_missing_in_new_dataset
+    
   )
   
 }
