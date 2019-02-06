@@ -154,6 +154,14 @@ produce_reports <-
       return(NULL)
       
     } else if (is.null(final_report) && !is.null(final_data)) {
+      # append two new variables in hm     
+      count_of_columns_missing_in_old_dataset <-
+        length(hm$columns_absent_in_dat_old)
+      count_of_columns_missing_in_new_dataset <-
+        length(hm$columns_absent_in_dat_new)
+      hm <- c(hm, count_of_columns_missing_in_old_dataset = count_of_columns_missing_in_old_dataset) 
+      hm <- c(hm, count_of_columns_missing_in_old_dataset = count_of_columns_missing_in_new_dataset) 
+
       # return object
       list_of_datasets <- list(
         "Joined Metrics" = jm$dat_joined_metrics,

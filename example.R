@@ -47,11 +47,12 @@ test_two_datasets(legacy_file = legacy_file,
                   hier_pair = geo_pair,
                   thresholds = thresholds,
                   final_report = final_report,
+                  #final_data = final_data,
                   key_col = key,
                   hier_col = hierarchy)
 
 # to read the report from RData file, use the following command
-#load("/Users/leizhang/Projects/EA/ea/output/outputs.RData", ex <- new.env())
+#load("/Users/leizhang/Projects/EA/restore/output/outputs.RData", ex <- new.env())
 #ls.str(ex) 
 #View(ex)
 #toc()
