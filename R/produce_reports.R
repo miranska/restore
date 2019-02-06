@@ -165,7 +165,8 @@ produce_reports <-
         "Distribution Alerts" = em$alert_distribution,
         "Spearman Difference" = em$spearman_hierarchy,
         "Ranking" = em$total_appear,
-        "NA Features" = em$na_offenders_report
+        "NA Features" = em$na_offenders_report,
+        "Variable Attributes" = hm
       )
       return(list_of_datasets)
       
