@@ -68,11 +68,34 @@ test_two_datasets(legacy_file = NULL, legacy_df = NULL,
 }
 \description{
 This is a package of regression testing for dataset migration. Given a scenario where a legacy dataset will be replaced by a target dataset, we will analyze the difference between them based on following tests:
-1. Distribution test: Kolmogorov-Smirnov test.
-2. Correlation tests: Pearson correlation coefficient and Spearman's correlation.
-3. Mean relative errors.
-4. The difference between two hierarchical pairs in Spearman's test.
-5. Features that have NA values.
-6. Hybrid tests, which shows features that appear in Kolmogorov-Smirnov test, mean relative error test, and correlation tests.
+1. Distribution test: Kolmogorov-Smirnov test;
+2. Correlation tests: Pearson correlation coefficient and Spearman's correlation;
+3. Different variables and records;
+4. Magnitude comparison;
+5. Mean relative errors;
+6. The difference between two hierarchical pairs in Spearman's test;
+7. Features that have NA values;
+8. Hybrid tests, which shows features that appear in Kolmogorov-Smirnov test, mean relative error test, and correlation tests;
+9. Ranking, which shows the ranking of variables that appear in Kolmogorov-Smirnov test, mean relative error test, and correlation tests.
 The final report will be written into a user-specified xlsx file or an object (which is stored in an RData file). Users can choose the test results produced in the final report.
+}
+\examples{
+old_file <- 'old.csv'
+new_file <- 'new.csv'
+geo_hier <- 'geo_hierarchies.csv'
+geo_pair <- 'geo_pairs.csv'
+thresholds <- 'thresholds.csv'
+final_report <- 'output.xlsx'
+key <- 'CODE'
+hierarchy <-'GEO'
+
+test_two_datasets(legacy_file = old_file,
+                  target_file = new_file,
+                  hier = geo_hier,
+                  hier_pair = geo_pair,
+                  thresholds = thresholds,
+                  final_report = final_report,
+                  key_col = key,
+                  hier_col = hierarchy)
+
 }
