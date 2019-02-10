@@ -1,0 +1,14 @@
+﻿VarID,VarDesc
+CODE,Geography ID
+GEO,Geography Level
+POP,Total Population
+HHD,Total Households (private occupied dwelling with usual resident)
+MSCOUPLE,Total population in couple relationships (married or common-law)
+MSNOTCOUPLE,"Total population not in couple relationship (single, seperated, divorced, widowed)"
+MTENGLISH,Mother tongue language English
+MTFRENCH,Mother tongue language French
+MTNONOFF,Mother tongue language non-official language
+VISMIN,Total visible minority
+NONVISMIN,Total non-visible minority
+IMMIG,Total immigrants
+NONIMMIG,Total non-immigrant

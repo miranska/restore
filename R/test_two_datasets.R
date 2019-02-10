@@ -12,13 +12,11 @@
 #' 9. Ranking, which shows the ranking of variables that appear in Kolmogorov-Smirnov test, mean relative error test, and correlation tests.
 #' The final report will be written into a user-specified xlsx file or an object (which is stored in an RData file). Users can choose the test results produced in the final report. 
 #'
-#' @import data.table
-#' @import glue
+#' @importFrom data.table data.table setkeyv rbindlist
 #' @import openxlsx
 #' @import dplyr
 #' @import tidyr
 #' @import readr
-#' @import testthat
 #'
 #' @param legacy_file Full path of the input legacy dataset (csv)
 #' @param legacy_df Data frame contained the input legacy dataset
