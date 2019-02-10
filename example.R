@@ -11,7 +11,7 @@ legacy_file <- 'old.csv'
 target_file <- 'new.csv'
 
 #output file
-output_dir <- './output/'
+output_dir <- './result/'
 
 # NOTE: the column names of the following two files cannot be changed.
 geo_hier <- 'geo_hierarchies.csv'
