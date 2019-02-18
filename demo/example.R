@@ -6,7 +6,7 @@
 #tic("starting")
 
 # input file
-input_dir <- './data/'
+input_dir <- './inst/extdata/'
 legacy_file <- 'old.csv'
 target_file <- 'new.csv'
 

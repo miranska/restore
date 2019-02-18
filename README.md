@@ -49,7 +49,7 @@ devtools::install("The full path of the source code", repos=NULL, type='source')
 
 ## Running the tests
 
-Under the root directory of this project, we provide one example of how to use this package. After the installation, you can test the installation by running the `example.R` file. The `example.R` file will call the function of `test_two_datasets()`. In addition, you can type `help("test_two_datasets")` in R console to see the details of all the arguments.
+Under the `demo` directory of this project, we provide one example of how to use this package. After the installation, you can test the installation by running the `example.R` file. The `example.R` file will call the function of `test_two_datasets()`. In addition, you can type `help("test_two_datasets")` in R console to see the details of all the arguments.
 
 ### Break down into end to end tests
 
@@ -68,11 +68,11 @@ test_two_datasets(legacy_file = legacy_file,
 
 ### Sample data and sample outputs
 
-To illustrate the usage of RESTORE, we provide a set of sample data in the folder of `data` under the root directory of RESTORE. The sample datasets are geodemographic data. In additon, the sample output files generated from the sample data can be found in the folder of `result` under the root directory.
+To illustrate the usage of RESTORE, we provide a set of sample data in the folder of `inst/extdata/` under the root directory of RESTORE. The sample datasets are geodemographic data. In additon, the sample output files generated from the sample data can be found in the same folder.
 
 The sample data includes several files as follows.
 
-1. `Variable Descriptions.xlsx` --- the descriptions of variable names.
+1. `Variable Descriptions.csv` --- the descriptions of variable names.
 2. `old.csv` --- the old vintage of a geodemographic dataset.
 3. `new.csv` --- the new vintage of a geodemographic dataset.
 4. `geo_hierarchies.csv` --- the definition of geographic hierarchies.
