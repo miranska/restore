@@ -80,20 +80,28 @@ This is a package of regression testing for dataset migration. Given a scenario 
 The final report will be written into a user-specified xlsx file or an object (which is stored in an RData file). Users can choose the test results produced in the final report.
 }
 \examples{
-old_file <- '../inst/extdata/old.csv'
-new_file <- '../inst/extdata/new.csv'
-geo_hier <- '../inst/extdata/geo_hierarchies.csv'
-geo_pair <- '../inst/extdata/geo_pairs.csv'
-thresholds <- '../inst/extdata/thresholds.csv'
+library("rio")
+
+old_file <- '../data/old.RData'
+new_file <- '../data/new.RData'
+geo_hier <- '../data/geo_hierarchies.RData'
+geo_pair <- '../data/geo_pairs.RData'
+thresholds <- '../data/thresholds.RData'
 final_report <- '../inst/extdata/analysis_results.xlsx'
 key <- 'CODE'
 hierarchy <-'GEO'
 
-test_two_datasets(legacy_file = old_file,
-                  target_file = new_file,
-                  hier = geo_hier,
-                  hier_pair = geo_pair,
-                  thresholds = thresholds,
+old_file <- import(old_file)
+new_file <- import(new_file)
+geo_hier <- import(geo_hier)
+geo_pair <- import(geo_pair)
+thresholds <- import(thresholds)
+
+test_two_datasets(legacy_df = old_file,
+                  target_df = new_file,
+                  hier_df = geo_hier,
+                  hier_pair_df = geo_pair,
+                  thresholds_df = thresholds,
                   final_report = final_report,
                   key_col = key,
                   hier_col = hierarchy)

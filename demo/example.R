@@ -6,19 +6,19 @@
 #tic("starting")
 
 # input file
-input_dir <- './inst/extdata/'
-legacy_file <- 'old.csv'
-target_file <- 'new.csv'
+input_dir <- './data/'
+legacy_df <- 'old.RData'
+target_df <- 'new.RData'
 
 #output file
 output_dir <- './inst/extdata/'
 
 # NOTE: the column names of the following two files cannot be changed.
-geo_hier <- 'geo_hierarchies.csv'
-geo_pair <- 'geo_pairs.csv'
+geo_hier <- 'geo_hierarchies.RData'
+geo_pair <- 'geo_pairs.RData'
 
 # thresholds
-thresholds <- 'thresholds.csv'
+geo_thresholds <- 'thresholds.RData'
 
 # output file
 final_report <- 'analysis_results.xlsx'
@@ -28,19 +28,25 @@ final_report <- 'analysis_results.xlsx'
 key <- 'CODE'
 hierarchy <-'GEO'
 
-legacy_file <- paste(input_dir, legacy_file, sep = '')
-target_file <- paste(input_dir, target_file, sep = '')
+legacy_df <- paste(input_dir, legacy_df, sep = '')
+target_df <- paste(input_dir, target_df, sep = '')
 geo_hier <- paste(input_dir, geo_hier, sep = '')
 geo_pair <- paste(input_dir, geo_pair, sep = '')
-thresholds <- paste(input_dir, thresholds, sep = '')
+geo_thresholds <- paste(input_dir, geo_thresholds, sep = '')
 final_report <- paste(output_dir, final_report, sep = '')
 #final_data <- paste(output_dir, final_data, sep = '')
 
-test_two_datasets(legacy_file = legacy_file,
-                  target_file = target_file,
-                  hier = geo_hier,
-                  hier_pair = geo_pair,
-                  thresholds = thresholds,
+legacy_df <- import(legacy_df)
+target_df <- import(target_df)
+geo_hier <- import(geo_hier)
+geo_pair <- import(geo_pair)
+geo_thresholds <- import(geo_thresholds)
+
+test_two_datasets(legacy_df = legacy_df,
+                  target_df = target_df,
+                  hier_df = geo_hier,
+                  hier_pair_df = geo_pair,
+                  thresholds_df = geo_thresholds,
                   final_report = final_report,
                   #final_data = final_data,
                   key_col = key,

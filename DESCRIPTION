@@ -17,12 +17,11 @@ Description: This is a package of regression testing for dataset migration. Give
   The final report will be written into a user-specified xlsx file or an object (which is stored in an RData file). Users can choose the test results produced in the final report.
 Imports:
     data.table,
-    glue,
     openxlsx,
     dplyr,
     tidyr,
     readr,
-    testthat
+    rio
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
