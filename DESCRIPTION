@@ -21,6 +21,7 @@ Imports:
     dplyr,
     tidyr,
     readr,
+    testthat,
     rio
 License: GPL-3
 Encoding: UTF-8
