@@ -1,5 +1,6 @@
 # Replace the full path by your own path
 ##detach(package:readr, unload=TRUE)
+library(rio)
 
 # tictoc is for timing
 #library(tictoc)
@@ -7,18 +8,18 @@
 
 # input file
 input_dir <- './data/'
-legacy_df <- 'old.RData'
-target_df <- 'new.RData'
+legacy_df <- 'restore_old.RData'
+target_df <- 'restore_new.RData'
 
 #output file
 output_dir <- './inst/extdata/'
 
 # NOTE: the column names of the following two files cannot be changed.
-geo_hier <- 'geo_hierarchies.RData'
-geo_pair <- 'geo_pairs.RData'
+geo_hier <- 'restore_geo_hierarchies.RData'
+geo_pair <- 'restore_geo_pairs.RData'
 
 # thresholds
-geo_thresholds <- 'thresholds.RData'
+geo_thresholds <- 'restore_thresholds.RData'
 
 # output file
 final_report <- 'analysis_results.xlsx'

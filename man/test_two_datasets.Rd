@@ -82,11 +82,11 @@ The final report will be written into a user-specified xlsx file or an object (w
 \examples{
 library("rio")
 
-old_file <- '../data/old.RData'
-new_file <- '../data/new.RData'
-geo_hier <- '../data/geo_hierarchies.RData'
-geo_pair <- '../data/geo_pairs.RData'
-thresholds <- '../data/thresholds.RData'
+old_file <- '../data/restore_old.RData'
+new_file <- '../data/restore_new.RData'
+geo_hier <- '../data/restore_geo_hierarchies.RData'
+geo_pair <- '../data/restore_geo_pairs.RData'
+thresholds <- '../data/restore_thresholds.RData'
 final_report <- '../inst/extdata/analysis_results.xlsx'
 key <- 'CODE'
 hierarchy <-'GEO'
