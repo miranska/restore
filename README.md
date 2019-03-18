@@ -85,7 +85,17 @@ The sample output files are as follows.
 2. `analysis_results.RData` --- the sample output in the format of `data.frame` in `R`.
 
 ## Publication
-To introduce RESTORE package, we have published a preprint at https://arxiv.org/abs/1903.03676. In addition, we request that you cite RESTORE publication/preprint if you use it as part of your acadmeic publication. 
+
+To introduce the RESTORE package, we have published a preprint at at [arXiv](https://arxiv.org/abs/1903.03676). Please cite RESTORE package as
+
+```
+@article{zhang2019restore,
+  title={{RESTORE: Automated Regression Testing for Datasets}},
+  author={Zhang, Lei and Howard, Sean and Montpool, Tom and Moore, Jessica and Mahajan, Krittika and Miranskyy, Andriy},
+  journal={arXiv preprint arXiv:1903.03676},
+  year={2019}
+}
+```
 
 ## Authors
 
