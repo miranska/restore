@@ -84,6 +84,9 @@ The sample output files are as follows.
 1. `analysis_results.xlsx` --- the sample report with mutiple tabs for various test results.
 2. `analysis_results.RData` --- the sample output in the format of `data.frame` in `R`.
 
+## Publication
+To introduce RESTORE package, we have published a preprint at https://arxiv.org/abs/1903.03676. In addition, we request that you cite RESTORE publication/preprint if you use it as part of your acadmeic publication. 
+
 ## Authors
 
 **Sean Howard**,
