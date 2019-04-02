@@ -5,4 +5,4 @@
 
 *.Rproj
 .Rbuildignore
-/output/
+RESTORE.Rcheck/

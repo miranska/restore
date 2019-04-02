@@ -52,7 +52,6 @@ load_datasets <- function(legacy_file,
   hier_pairs.len <- length(hier_pairs.df$Parent)
   
   # read thresholds
-  thresholds
   if (is.null(thresholds) && !is.null(thresholds_df)) {
     thlds <- thresholds_df
   } else if (!is.null(thresholds) && is.null(thresholds_df)) {
