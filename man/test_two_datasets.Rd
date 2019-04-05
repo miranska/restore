@@ -8,7 +8,7 @@ test_two_datasets(legacy_file = NULL, legacy_df = NULL,
   target_file = NULL, target_df = NULL, hier = NULL,
   hier_df = NULL, hier_pair = NULL, hier_pair_df = NULL,
   thresholds = NULL, thresholds_df = NULL, final_report = NULL,
-  final_data = NULL, key_col, hier_col, report_join = TRUE,
+  final_data = NULL, key_col, hier_col = NULL, report_join = TRUE,
   report_hybrid = TRUE, report_magnitude = TRUE, report_mre = TRUE,
   report_spearman = TRUE, report_pearson = TRUE,
   report_distribution = TRUE, report_rank = TRUE,
@@ -82,12 +82,14 @@ The final report will be written into a user-specified xlsx file or an object (w
 \examples{
 library("rio")
 
+# Let us first look at the hierarchical case
+
 old_file <- '../data/restore_old.RData'
 new_file <- '../data/restore_new.RData'
 geo_hier <- '../data/restore_geo_hierarchies.RData'
 geo_pair <- '../data/restore_geo_pairs.RData'
 thresholds <- '../data/restore_thresholds.RData'
-final_report <- '../inst/extdata/analysis_results.xlsx'
+final_report <- '../inst/extdata/analysis_results_hierarchy.xlsx'
 key <- 'CODE'
 hierarchy <-'GEO'
 
@@ -105,5 +107,22 @@ test_two_datasets(legacy_df = old_file,
                   final_report = final_report,
                   key_col = key,
                   hier_col = hierarchy)
+                  
+# Now let us consider the flat hierarchy case
+# To save space, we will reuse old_file, new_file, thresholds, and key variables.
+
+# Remove the hierarchy columns:
+old_file$GEO <- NULL
+new_file$GEO <- NULL
+
+final_report <- '../inst/extdata/analysis_results_flat_hierarchy.xlsx'
+
+# Note that a dummy column GEO will be generated in the report
+
+test_two_datasets(legacy_df = old_file,
+                  target_df = new_file,
+                  thresholds_df = thresholds,
+                  final_report = final_report,
+                  key_col = key)
 
 }

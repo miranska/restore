@@ -49,13 +49,15 @@
 #' 
 #' @examples 
 #' library("rio")
+#'
+#' # Let us first look at the hierarchical case
 #' 
 #' old_file <- '../data/restore_old.RData'
 #' new_file <- '../data/restore_new.RData'
 #' geo_hier <- '../data/restore_geo_hierarchies.RData'
 #' geo_pair <- '../data/restore_geo_pairs.RData'
 #' thresholds <- '../data/restore_thresholds.RData'
-#' final_report <- '../inst/extdata/analysis_results.xlsx'
+#' final_report <- '../inst/extdata/analysis_results_hierarchy.xlsx'
 #' key <- 'CODE'
 #' hierarchy <-'GEO'
 #' 
@@ -73,6 +75,23 @@
 #'                   final_report = final_report,
 #'                   key_col = key,
 #'                   hier_col = hierarchy)
+#'                   
+#' # Now let us consider the flat hierarchy case
+#' # To save space, we will reuse old_file, new_file, thresholds, and key variables.
+#' 
+#' # Remove the hierarchy columns:
+#' old_file$GEO <- NULL
+#' new_file$GEO <- NULL
+#' 
+#' final_report <- '../inst/extdata/analysis_results_flat_hierarchy.xlsx'
+#' 
+#' # Note that a dummy column GEO will be generated in the report
+#' 
+#' test_two_datasets(legacy_df = old_file,
+#'                   target_df = new_file,
+#'                   thresholds_df = thresholds,
+#'                   final_report = final_report,
+#'                   key_col = key)
 #'
 #' @export test_two_datasets
 
