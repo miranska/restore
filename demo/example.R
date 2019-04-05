@@ -22,8 +22,8 @@ geo_pair <- 'restore_geo_pairs.RData'
 geo_thresholds <- 'restore_thresholds.RData'
 
 # output file
-final_report <- 'analysis_results.xlsx'
-#final_data <- 'analysis_results.RData'
+final_report <- 'analysis_results_hierarchy.xlsx'
+#final_data <- 'analysis_results_hierarchy.RData'
 
 # key value and column name of geo_hierarchies
 key <- 'CODE'
