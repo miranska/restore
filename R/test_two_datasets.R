@@ -109,7 +109,7 @@ test_two_datasets <- function(legacy_file = NULL,
                               final_report = NULL,
                               final_data = NULL,
                               key_col, 
-                              hier_col,
+                              hier_col = NULL,
                               report_join = TRUE,
                               report_hybrid = TRUE,
                               report_magnitude = TRUE,
@@ -121,6 +121,17 @@ test_two_datasets <- function(legacy_file = NULL,
                               report_spearman_diff = TRUE, 
                               report_na = TRUE,
                               report_var_attr = TRUE) {
+  
+  #check if we are dealing with flat hierarchy
+  if(is.null(hier) && is.null(hier_df) && 
+     is.null(hier_pair) && is.null(hier_pair_df) && 
+     is.null(hier_col)){
+    is_flat_hierarchy <- TRUE
+    report_spearman_diff <- FALSE # the test is not applicable to flat hierarchy
+  }else{
+    is_flat_hierarchy <- FALSE
+  }
+
   # load datasets and corresponding input parameters
   ld <- load_datasets(legacy_file, 
                       legacy_df,
@@ -133,7 +144,8 @@ test_two_datasets <- function(legacy_file = NULL,
                       thresholds, 
                       thresholds_df, 
                       key_col, 
-                      hier_col)
+                      hier_col,
+                      is_flat_hierarchy)
   
   # join datasets
   dat_joined <- join_datasets(ld$dat_old, 

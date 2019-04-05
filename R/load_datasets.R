@@ -10,7 +10,15 @@ load_datasets <- function(legacy_file,
                           thresholds,
                           thresholds_df,
                           key_col, 
-                          hier_col) {
+                          hier_col,
+                          is_flat_hierarchy) {
+  
+  #create dummy hierarchy column for the flat hierarchy case
+  hierarchy_column_name <- ifelse(is.null(hier_col) && is_flat_hierarchy, 
+                                  'my_dummy_flat_hierarchy_column',
+                                  hier_col)
+  dummy_level_value <- 'a'
+  
   # read datasets
   # legacy data
   if (is.null(legacy_file) && !is.null(legacy_df)) {
@@ -29,6 +37,14 @@ load_datasets <- function(legacy_file,
     stop("Please provide only target_file or target_df.")
   }
   
+  #add dummy hierarchy column to old and new datasets if the hierarchy is flat
+  if(is_flat_hierarchy){
+    dat_old <- cbind(dat_old, dummy_level_value)
+    colnames(dat_old)[ncol(dat_old)] <- hierarchy_column_name
+    dat_new <- cbind(dat_new, dummy_level_value)
+    colnames(dat_new)[ncol(dat_new)] <- hierarchy_column_name
+  }
+  
   #TODO: add pairs for comparisons, which will deal with exceptions and different hierarchy levels
   #hierarchy levels (starting from the highest)
   # read hierarchy levels from the file or from a dataframe
@@ -36,6 +52,10 @@ load_datasets <- function(legacy_file,
     hierarchy_levels <- hier_df
   } else if (!is.null(hier) && is.null(hier_df)) {
     hierarchy_levels <- read.csv(hier)
+  } else if (is_flat_hierarchy){ #create dummy hierarchy if it is a flat one
+    hierarchy_levels <- data.frame(Order = c(1), 
+                                   Hierarchy = c(dummy_level_value), 
+                                   Description = c('Dummy level'))
   } else {
     stop("Please provide only hier or hier_df.")
   }
@@ -46,6 +66,9 @@ load_datasets <- function(legacy_file,
     hier_pairs.df <- hier_pair_df
   } else if (!is.null(hier_pair) && is.null(hier_pair_df)) {
     hier_pairs.df <- read.csv(hier_pair)
+  } else if (is_flat_hierarchy){ #create dummy hierarchy if it is a flat one
+    hier_pairs.df <- data.frame(Parent = c(dummy_level_value), 
+                                Child = c(dummy_level_value))
   } else {
     stop("Please provide only hier_pair or hier_pair_df.")
   }
@@ -67,7 +90,6 @@ load_datasets <- function(legacy_file,
   
   #create joined factors for hierarchy and key columns
   key_column_name <- key_col
-  hierarchy_column_name <- hier_col
   
   # TODO: change the following to NA values to real values?
   #specify the expected number of joined rows. If set to NA — skip the test.
