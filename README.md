@@ -53,14 +53,14 @@ Under the `demo` directory of this project, we provide one example of how to use
 
 ### Break down into end to end tests
 
-In `example.R`, we define five `csv` files for inputs --- `legacy_file`, `target_file`, `hier`, `hier_pair`, and `thresholds` with paths (alertatively, you can also use 'data.frame' as input parameters instead of files); we also define one output file in the format of `xlsx` or `RData` --- using `final_result` or `final_data`, respectively; `key_col` stores the column name of the key, and `hier_col` stores the column name of the geographic hierarchy. One example of calling the function can be seen as follows.
+In `example.R`, we define five `RData` files for inputs --- `restore_old`, `restore_new`, `restore_geo_hierarchies`, `restore_geo_pairs`, and `restore_thresholds`, which can be found in the folder of `data` (alertatively, you can also use 'data.frame' as input parameters instead of files); we also define one output file in the format of `xlsx` or `RData` --- using `analysis_results_hierarchy.xlsx` or `analysis_results_hierarchy.RData`, respectively; `key` stores the column name of the key, and `hierarchy` stores the column name of the geographic hierarchy. One example of calling the function can be seen as follows.
 
 ```
-test_two_datasets(legacy_file = legacy_file,
-                  target_file = target_file,
-                  hier = geo_hier,
-                  hier_pair = geo_pair,
-                  thresholds = thresholds,
+test_two_datasets(legacy_df = legacy_df,
+                  target_df = target_df,
+                  hier_df = geo_hier,
+                  hier_pair_df = geo_pair,
+                  thresholds_df = geo_thresholds,
                   final_report = final_report,
                   key_col = key,
                   hier_col = hierarchy)
@@ -68,21 +68,15 @@ test_two_datasets(legacy_file = legacy_file,
 
 ### Sample data and sample outputs
 
-To illustrate the usage of RESTORE, we provide a set of sample data in the folder of `inst/extdata/` under the root directory of RESTORE. The sample datasets are geodemographic data. In additon, the sample output files generated from the sample data can be found in the same folder.
+To illustrate the usage of RESTORE, we provide a set of metadata and sample outputs in the folder of `inst/extdata/` under the root directory of RESTORE.
 
-The sample data includes several files as follows.
+The metadata and the sample output files are as follows.
 
-1. `Variable Descriptions.csv` --- the descriptions of variable names.
-2. `old.csv` --- the old vintage of a geodemographic dataset.
-3. `new.csv` --- the new vintage of a geodemographic dataset.
-4. `geo_hierarchies.csv` --- the definition of geographic hierarchies.
-5. `geo_pairs.csv` --- the definition of geogrpahic pairs.
-6. `thresholds.csv` --- the thresholds of tests (as metioned in the beginning of this document).
-
-The sample output files are as follows.
-
-1. `analysis_results.xlsx` --- the sample report with mutiple tabs for various test results.
-2. `analysis_results.RData` --- the sample output in the format of `data.frame` in `R`.
+1. `VariableDescriptions.csv` --- the descriptions of variable names used in `restore_old.RData` and `restore_new.RData`.
+2. `analysis_results_hierarchy.xlsx` --- the sample report of hierarchical data structures (with mutiple tabs for various test results).
+3. `analysis_results_hierarchy.RData` --- the sample output of hierarchical data structures in the format of `data.frame` in `R`.
+4. `analysis_results_flat_hierarchy.xlsx` --- the sample report of flat data structures (with mutiple tabs for various test results).
+5. `analysis_results_flat_hierarchy.RData` --- the sample output of flat data structures in the format of `data.frame` in `R`.
 
 ## Publication
 
