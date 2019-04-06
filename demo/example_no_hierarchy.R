@@ -2,52 +2,34 @@
 ##detach(package:readr, unload=TRUE)
 library(rio)
 
-# tictoc is for timing
-#library(tictoc)
-#tic("starting")
-
-# input file
+#set relative paths to input and output dirs
 input_dir <- './data/'
-legacy_df <- 'restore_old.RData'
-target_df <- 'restore_new.RData'
-
-#output file
 output_dir <- './inst/extdata/'
 
+# input files
+old_dataset <- import(paste(input_dir, 'restore_old.RData', sep = ''))
+new_dataset <- import(paste(input_dir, 'restore_new.RData', sep = ''))
+
 # thresholds
-geo_thresholds <- 'restore_thresholds.RData'
+metric_thresholds <- import(paste(input_dir, 'restore_thresholds.RData', sep = ''))
 
 # output file
-final_report <- 'analysis_results_flat_hierarchy.xlsx'
-# final_data <- 'analysis_results_flat_hierarchy.RData'
+final_report <- paste(output_dir, 'analysis_results_flat_hierarchy.xlsx', sep = '')
 
-# key value and column name of geo_hierarchies
-key <- 'CODE'
-
-legacy_df <- paste(input_dir, legacy_df, sep = '')
-target_df <- paste(input_dir, target_df, sep = '')
-geo_thresholds <- paste(input_dir, geo_thresholds, sep = '')
-final_report <- paste(output_dir, final_report, sep = '')
-final_data <- paste(output_dir, final_data, sep = '')
-
-legacy_df <- import(legacy_df)
-target_df <- import(target_df)
-geo_thresholds <- import(geo_thresholds)
+# If you would like to save the output in RData format, then comment final_report 
+# and uncomment final_data variable.
+#final_data <- paste(output_dir, 'analysis_results_flat_hierarchy.RData', sep = '')
 
 #let us remove the "GEO" column to mimic flat hierarchy
-legacy_df$GEO <- NULL
-target_df$GEO <- NULL
+old_dataset$GEO <- NULL
+new_dataset$GEO <- NULL
 
-test_two_datasets(legacy_df = legacy_df,
-                  target_df = target_df,
-                  thresholds_df = geo_thresholds,
+test_two_datasets(legacy_df = old_dataset,
+                  target_df = new_dataset,
+                  thresholds_df = metric_thresholds,
                   final_report = final_report,
                   #final_data = final_data,
                   key_col = key)
 
-# to read the report from RData file, use the following command
-#load("./output/analysis_results.RData", ex <- new.env())
-#ls.str(ex) 
-#View(ex)
-
-#toc()
+# If you would like to save the output in RData format, then comment final_report 
+# parameter and uncomment final_data parameter in the test_two_datasets.
