@@ -70,7 +70,7 @@ We also need to provide the names of the `key` and `hierarchy` columns in the `r
 
 ```R
 key <- 'CODE'
-hierarchy <-'GEO'
+hierarchy <- 'GEO'
 ```
 
 Finally, we should specify the name of the output file in `xlsx` or `RData` format. The former is passed to `final_report` parameter of the `test_two_datasets`, the latter to the parameter `final_data`. In this demo we will save the output in `xlsx` format:
