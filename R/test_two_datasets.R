@@ -223,15 +223,4 @@ test_two_datasets <- function(legacy_file = NULL,
   if(!is.null(outputs)) {
     save(outputs, file = final_data)
   }
-  
-  #############################################
-  # Testing with testthat
-  #############################################
-  #eval(parse("test_that.R"))
-  #test_violation(ld$expected_number_of_joined_rows,
-  #               ld$expected_column_names_in_new_dataset,
-  #               ld$check_for_order_of_column_names_in_the_new_dataset,
-  #               ld$hierarchy_levels,
-  #               ld$dat_new,
-  #               ld$hierarchy_column_name)
 }
