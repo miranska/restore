@@ -93,7 +93,7 @@ test_two_datasets(legacy_df = old_dataset,
 ```
 
 #### Compare datasets with flat hierarchy
-The comparison of the datasets with flat hierarchy (i.e., those that contain non-hierarchical data) is even more straightforward, as we do not need any hierarchy-related data. Thus, we need only three data frames:
+The comparison of the datasets with flat hierarchy (i.e., those that contain non-hierarchical data) is given in [example_no_hierarchy.R](https://github.com/miranska/restore/blob/master/demo/example_no_hierarchy.R).  This comparison is even more straightforward, as we do not need any hierarchy-related data. Thus, we will use only three data frames:
 
 ```R
 old_dataset <- # read data frame from restore_old.RData
@@ -101,7 +101,7 @@ new_dataset <- # read data frame from restore_new.RData
 metric_thresholds <- # read data frame from restore_thresholds.RData
 ```
 
-To minimize the size of this R package, we reuse the hierarchical files used in the [`example.R`](https://github.com/miranska/restore/blob/master/demo/example.R) demo. Thus we need to eliminate the columns containing information about the hierarchy:
+To minimize the size of this R package, we reuse the hierarchical files used in the [`example.R`](https://github.com/miranska/restore/blob/master/demo/example.R) demo. Therefore, we need to eliminate the columns containing information about the hierarchy:
 ```R
 #let us remove the "GEO" column to mimic flat hierarchy
 old_dataset$GEO <- NULL
