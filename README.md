@@ -92,6 +92,45 @@ test_two_datasets(legacy_df = old_dataset,
                   hier_col = hierarchy)
 ```
 
+#### Compare datasets with flat hierarchy
+The comparison of the datasets with flat hierarchy (i.e., those that contain non-hierarchical data) is even more straightforward, as we do not need any hierarchy-related data. Thus, we need only three data frames:
+
+```R
+old_dataset <- # read data frame from restore_old.RData
+new_dataset <- # read data frame from restore_new.RData
+metric_thresholds <- # read data frame from restore_thresholds.RData
+```
+
+To minimize the size of this R package, we reuse the hierarchical files used in the [`example.R`](https://github.com/miranska/restore/blob/master/demo/example.R) demo. Thus we need to eliminate the columns containing information about the hierarchy:
+```R
+#let us remove the "GEO" column to mimic flat hierarchy
+old_dataset$GEO <- NULL
+new_dataset$GEO <- NULL
+```
+In practice, these columns would not exist in the input files.
+
+We then need to specify the name of the `key` columns in the `restore_old.RData` and `restore_new.RData`:
+
+```R
+key <- 'CODE'
+```
+
+Finally, we should provide the name of the output file in `xlsx` or `RData` format. The former is passed to `final_report` parameter of the `test_two_datasets`, the latter to the parameter `final_data`. In this demo we will save the output in `xlsx` format:
+
+```R
+final_report <- paste(output_dir, 'analysis_results_flat_hierarchy.xlsx', sep = '')
+```
+
+Function `test_two_datasets` takes the parameter values defined above, executes the tests and saves the results in the `final_report` file. The samples of output files `analysis_results_flat_hierarchy.xlsx` and `analysis_results_flat_hierarchy.RData` reside in the [`inst/extdata/`](https://github.com/miranska/restore/tree/master/inst/extdata) folder. Note that the reports will contain a dummy column `GEO` which can be ignored.
+
+```R
+test_two_datasets(legacy_df = old_dataset,
+                  target_df = new_dataset,
+                  thresholds_df = metric_thresholds,
+                  final_report = final_report,
+                  key_col = key)
+```
+
 ### Sample data and sample outputs
 
 To illustrate the usage of RESTORE, we provide a set of metadata and sample outputs in the folder of `inst/extdata/` under the root directory of RESTORE.
