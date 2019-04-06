@@ -2,47 +2,33 @@
 ##detach(package:readr, unload=TRUE)
 library(rio)
 
-# tictoc is for timing
-#library(tictoc)
-#tic("starting")
-
-# input file
+#set relative paths to input and output dirs
 input_dir <- './data/'
-legacy_df <- 'restore_old.RData'
-target_df <- 'restore_new.RData'
-
-#output file
 output_dir <- './inst/extdata/'
 
+# input files
+legacy_df <- import(paste(input_dir, 'restore_old.RData', sep = ''))
+target_df <- import(paste(input_dir, 'restore_new.RData', sep = ''))
+
 # NOTE: the column names of the following two files cannot be changed.
-geo_hier <- 'restore_geo_hierarchies.RData'
-geo_pair <- 'restore_geo_pairs.RData'
+geo_hier <- import(paste(input_dir, 'restore_geo_hierarchies.RData', sep = ''))
+geo_pair <- import(paste(input_dir, 'restore_geo_pairs.RData', sep = ''))
 
 # thresholds
-geo_thresholds <- 'restore_thresholds.RData'
+geo_thresholds <- import(paste(input_dir, 'restore_thresholds.RData', sep = ''))
 
 # output file
-final_report <- 'analysis_results_hierarchy.xlsx'
-#final_data <- 'analysis_results_hierarchy.RData'
+final_report <- paste(output_dir, 'analysis_results_hierarchy.xlsx', sep = '')
 
-# key value and column name of geo_hierarchies
+# If you would like to save the output in RData format, then comment final_report 
+# and uncomment final_data variable.
+#final_data <- paste(output_dir, 'analysis_results_hierarchy.RData', sep = '')
+
+# set column names of key and hierarchy columns in legacy_df and target_df
 key <- 'CODE'
 hierarchy <-'GEO'
 
-legacy_df <- paste(input_dir, legacy_df, sep = '')
-target_df <- paste(input_dir, target_df, sep = '')
-geo_hier <- paste(input_dir, geo_hier, sep = '')
-geo_pair <- paste(input_dir, geo_pair, sep = '')
-geo_thresholds <- paste(input_dir, geo_thresholds, sep = '')
-final_report <- paste(output_dir, final_report, sep = '')
-#final_data <- paste(output_dir, final_data, sep = '')
-
-legacy_df <- import(legacy_df)
-target_df <- import(target_df)
-geo_hier <- import(geo_hier)
-geo_pair <- import(geo_pair)
-geo_thresholds <- import(geo_thresholds)
-
+# run the tests
 test_two_datasets(legacy_df = legacy_df,
                   target_df = target_df,
                   hier_df = geo_hier,
@@ -53,9 +39,5 @@ test_two_datasets(legacy_df = legacy_df,
                   key_col = key,
                   hier_col = hierarchy)
 
-# to read the report from RData file, use the following command
-#load("./output/analysis_results.RData", ex <- new.env())
-#ls.str(ex) 
-#View(ex)
-
-#toc()
+# If you would like to save the output in RData format, then comment final_report 
+# parameter and uncomment final_data parameter in the test_two_datasets.
