@@ -133,15 +133,15 @@ test_two_datasets(legacy_df = old_dataset,
 
 ### Sample data and sample outputs
 
-To illustrate the usage of RESTORE, we provide a set of metadata and sample outputs in the folder of `inst/extdata/` under the root directory of RESTORE.
+To illustrate the usage of RESTORE, we provide a set of metadata and sample outputs in the folder of [`inst/extdata/`]((https://github.com/miranska/restore/tree/master/inst/extdata) under the root directory of RESTORE.
 
 The metadata and the sample output files are as follows.
 
-1. `VariableDescriptions.csv` --- the descriptions of variable names used in `restore_old.RData` and `restore_new.RData`.
-2. `analysis_results_hierarchy.xlsx` --- the sample report of hierarchical data structures (with mutiple tabs for various test results).
-3. `analysis_results_hierarchy.RData` --- the sample output of hierarchical data structures in the format of `data.frame` in `R`.
-4. `analysis_results_flat_hierarchy.xlsx` --- the sample report of flat data structures (with mutiple tabs for various test results).
-5. `analysis_results_flat_hierarchy.RData` --- the sample output of flat data structures in the format of `data.frame` in `R`.
+1. `VariableDescriptions.csv` --- the descriptions of variable names in `restore_old.RData` and `restore_new.RData` (residing in the [`data`](https://github.com/miranska/restore/tree/master/data) folder). These two `RData` files contain data frames of the old and new versions of the data, respectively.
+2. `analysis_results_hierarchy.xlsx` --- the sample report for comparing hierarchical data (with multiple tabs for various test results).
+3. `analysis_results_hierarchy.RData` --- the sample report for comparing non-hierarchical (flat) data in the machine-readable format.
+4. `analysis_results_flat_hierarchy.xlsx` --- the sample report for comparing non-hierarchical (flat) data (with multiple tabs for various test results).
+5. `analysis_results_flat_hierarchy.RData` --- the sample report for comparing non-hierarchical (flat) data in the machine-readable format.
 
 ## Publication
 
