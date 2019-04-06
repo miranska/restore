@@ -86,7 +86,7 @@ The sample output files are as follows.
 
 ## Publication
 
-To introduce the RESTORE package, we have published a preprint at at [arXiv](https://arxiv.org/abs/1903.03676). Please cite RESTORE package as
+The details of the RESTORE package are given in a [preprint](https://arxiv.org/abs/1903.03676). Please cite RESTORE package as
 
 ```
 @article{zhang2019restore,
