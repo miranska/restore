@@ -7,15 +7,15 @@ input_dir <- './data/'
 output_dir <- './inst/extdata/'
 
 # input files
-legacy_df <- import(paste(input_dir, 'restore_old.RData', sep = ''))
-target_df <- import(paste(input_dir, 'restore_new.RData', sep = ''))
+old_dataset <- import(paste(input_dir, 'restore_old.RData', sep = ''))
+new_dataset <- import(paste(input_dir, 'restore_new.RData', sep = ''))
 
 # NOTE: the column names of the following two files cannot be changed.
-geo_hier <- import(paste(input_dir, 'restore_geo_hierarchies.RData', sep = ''))
-geo_pair <- import(paste(input_dir, 'restore_geo_pairs.RData', sep = ''))
+hierarchy_ordering <- import(paste(input_dir, 'restore_geo_hierarchies.RData', sep = ''))
+hierarchy_pairs <- import(paste(input_dir, 'restore_geo_pairs.RData', sep = ''))
 
 # thresholds
-geo_thresholds <- import(paste(input_dir, 'restore_thresholds.RData', sep = ''))
+metric_thresholds <- import(paste(input_dir, 'restore_thresholds.RData', sep = ''))
 
 # output file
 final_report <- paste(output_dir, 'analysis_results_hierarchy.xlsx', sep = '')
@@ -29,11 +29,11 @@ key <- 'CODE'
 hierarchy <-'GEO'
 
 # run the tests
-test_two_datasets(legacy_df = legacy_df,
-                  target_df = target_df,
-                  hier_df = geo_hier,
-                  hier_pair_df = geo_pair,
-                  thresholds_df = geo_thresholds,
+test_two_datasets(legacy_df = old_dataset,
+                  target_df = new_dataset,
+                  hier_df = hierarchy_ordering,
+                  hier_pair_df = hierarchy_pairs,
+                  thresholds_df = metric_thresholds,
                   final_report = final_report,
                   #final_data = final_data,
                   key_col = key,
