@@ -133,7 +133,7 @@ test_two_datasets(legacy_df = old_dataset,
 
 ### Sample data and sample outputs
 
-To illustrate the usage of RESTORE, we provide a set of metadata and sample outputs in the folder of [`inst/extdata/`]((https://github.com/miranska/restore/tree/master/inst/extdata) under the root directory of RESTORE.
+To illustrate the usage of RESTORE, we provide a set of metadata and sample outputs in the folder of [`inst/extdata/`](https://github.com/miranska/restore/tree/master/inst/extdata) under the root directory of RESTORE.
 
 The metadata and the sample output files are as follows.
 
