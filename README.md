@@ -53,14 +53,40 @@ Under the `demo` directory of this project, we provide one example of how to use
 
 ### Break down into end to end tests
 
-In `example.R`, we define five `RData` files for inputs --- `restore_old`, `restore_new`, `restore_geo_hierarchies`, `restore_geo_pairs`, and `restore_thresholds`, which can be found in the folder of `data` (alertatively, you can also use 'data.frame' as input parameters instead of files); we also define one output file in the format of `xlsx` or `RData` --- using `analysis_results_hierarchy.xlsx` or `analysis_results_hierarchy.RData`, respectively; `key` stores the column name of the key, and `hierarchy` stores the column name of the geographic hierarchy. One example of calling the function can be seen as follows.
+#### Compare hierarchical datasets
+A demo of comparing two hierarchical datasets is given in [`example.R`](https://github.com/miranska/restore/blob/master/demo/example.R), which executes `test_two_datasets` function used to compare two vintages of a dataset. 
 
+In this demo, we read the data from five `RData` files residing in the [`data`](https://github.com/miranska/restore/tree/master/data) folder. Alternatively, the data can be supplied as R data frames or read from CSV files (see the manual for details). The old vintage of the dataset resides in `restore_old.RData`, the new vintage -- in `restore_new.RData`. The file  `restore_geo_hierarchies.RData` contains a ranking of the hierarchies, `restore_geo_pairs.RData` --- pair-wise relations between the hierarchy levels, and `restore_thresholds.RData` --- threshold values for the metrics of interest. We discuss the details of the input files is Section 4.1 of the [preprint](https://arxiv.org/pdf/1903.03676.pdf).
+
+```R
+old_dataset <- # read data frame from restore_old.RData
+new_dataset <- # read data frame from restore_new.RData
+hierarchy_ordering <- # read data frame from restore_geo_hierarchies.RData
+hierarchy_pairs <- # read data frame from restore_geo_pairs.RData
+metric_thresholds <- # read data frame from restore_thresholds.RData
 ```
-test_two_datasets(legacy_df = legacy_df,
-                  target_df = target_df,
-                  hier_df = geo_hier,
-                  hier_pair_df = geo_pair,
-                  thresholds_df = geo_thresholds,
+
+We also need to provide the names of the `key` and `hierarchy` columns in the `restore_old.RData` and `restore_new.RData`:
+
+```R
+key <- 'CODE'
+hierarchy <-'GEO'
+```
+
+Finally, we should specify the name of the output file in `xlsx` or `RData` format. The former is passed to `final_report` parameter of the `test_two_datasets`, the latter to the parameter `final_data`. In this demo we will save the output in `xlsx` format:
+
+```R
+final_report <- paste(output_dir, 'analysis_results_hierarchy.xlsx', sep = '')
+```
+
+Function `test_two_datasets` takes the parameter values defined above, executes the tests and saves the results in the `final_report` file. The samples of output files `analysis_results_hierarchy.xlsx` and `analysis_results_hierarchy.RData` reside in the [`inst/extdata/`](https://github.com/miranska/restore/tree/master/inst/extdata) folder. 
+
+```R
+test_two_datasets(legacy_df = old_dataset,
+                  target_df = new_dataset,
+                  hier_df = hierarchy_ordering,
+                  hier_pair_df = hierarchy_pairs,
+                  thresholds_df = metric_thresholds,
                   final_report = final_report,
                   key_col = key,
                   hier_col = hierarchy)
