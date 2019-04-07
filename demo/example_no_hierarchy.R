@@ -17,7 +17,7 @@ metric_thresholds <- import(paste(input_dir, 'restore_thresholds.RData', sep = '
 final_report <- paste(output_dir, 'analysis_results_flat_hierarchy.xlsx', sep = '')
 
 # save the output in RData format
-# you can choose one of final_report and final_data, or both of them
+# NOTE: you can choose one or both of final_report and final_data
 final_data <- paste(output_dir, 'analysis_results_flat_hierarchy.RData', sep = '')
 
 # let us remove the "GEO" column to mimic flat hierarchy

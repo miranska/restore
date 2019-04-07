@@ -21,7 +21,7 @@ metric_thresholds <- import(paste(input_dir, 'restore_thresholds.RData', sep = '
 final_report <- paste(output_dir, 'analysis_results_hierarchy.xlsx', sep = '')
 
 # save the output in RData format
-# you can choose one of final_report and final_data, or both of them
+# NOTE: you can choose one or both of final_report and final_data
 final_data <- paste(output_dir, 'analysis_results_hierarchy.RData', sep = '')
 
 # set column names of key and hierarchy columns in legacy_df and target_df
