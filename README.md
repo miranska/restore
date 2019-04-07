@@ -27,14 +27,14 @@ These instructions will show you how to instal the RESTORE package from GitHub, 
 
 You need to install `devtools` first in R to install the package.
 
-```
+```R
 install.packages('devtools')
 ```
 
 ### Installing
 
 To install it directly from GitHub:
-```
+```R
 devtools::install_github("https://github.com/miranska/restore")
 ```
 
@@ -43,7 +43,7 @@ To install it locally:
 1. Download the source code from GitHub
 2. In R console, run the following command:
 
-```
+```R
 devtools::install("The full path to the source code", repos=NULL, type='source')
 ```
 
