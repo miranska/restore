@@ -10,7 +10,7 @@
 #' 7. Features that have NA values;
 #' 8. Hybrid tests, which shows features that appear in Kolmogorov-Smirnov test, mean relative error test, and correlation tests;
 #' 9. Ranking, which shows the ranking of variables that appear in Kolmogorov-Smirnov test, mean relative error test, and correlation tests.
-#' The final report will be written into a user-specified xlsx file or an object (which is stored in an RData file). Users can choose the test results produced in the final report. 
+#' The final report will be written into a user-specified xlsx file or/and an object (which is stored in an RData file). Users can choose the test results produced in the final report. 
 #'
 #' @importFrom data.table data.table setkeyv rbindlist
 #' @import openxlsx
@@ -202,7 +202,8 @@ test_two_datasets <- function(legacy_file = NULL,
   
   # produce reports in an xlsx file
   # TODO: shall we divide the arguments into different metrics?
-  outputs <- produce_reports(
+  #outputs <- produce_reports(
+  produce_reports(
     hm,
     jm,
     em,
@@ -220,7 +221,4 @@ test_two_datasets <- function(legacy_file = NULL,
     report_na,
     report_var_attr
   )
-  if(!is.null(outputs)) {
-    save(outputs, file = final_data)
-  }
 }

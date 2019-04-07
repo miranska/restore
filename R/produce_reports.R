@@ -16,7 +16,11 @@ produce_reports <-
            report_spearman_diff,
            report_na,
            report_var_attr) {
-    if (!is.null(final_report) && is.null(final_data)) {
+    if (is.null(final_report) && is.null(final_data)) {
+      stop("Please provide at least one of final_report and final_data for outputs.")
+    }
+    # if final_report is provided:
+    if (!is.null(final_report)) {
       # write to xlsx file
       ########################################
       # write all results to an xlsx file
@@ -144,12 +148,9 @@ produce_reports <-
       
       # write the final results
       saveWorkbook(wb, final_report, overwrite = TRUE)
-      
-      # return null
-      return(NULL)
-      
-    } else if (is.null(final_report) && !is.null(final_data)) {
-
+    }
+    # if final_data is provided:
+    if (!is.null(final_data)) {
       # return object
       list_of_datasets <- list(
         "Joined Metrics" = jm$dat_joined_metrics,
@@ -164,9 +165,6 @@ produce_reports <-
         "NA Features" = em$na_offenders_report,
         "Variable Attributes" = hm
       )
-      return(list_of_datasets)
-      
-    } else {
-      stop("Please provide only final_report or final_data.")
-    }
+      save(list_of_datasets, file = final_data)
+    } 
   }

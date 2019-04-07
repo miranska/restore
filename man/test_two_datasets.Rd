@@ -77,7 +77,7 @@ This is a package of regression testing for dataset migration. Given a scenario 
 7. Features that have NA values;
 8. Hybrid tests, which shows features that appear in Kolmogorov-Smirnov test, mean relative error test, and correlation tests;
 9. Ranking, which shows the ranking of variables that appear in Kolmogorov-Smirnov test, mean relative error test, and correlation tests.
-The final report will be written into a user-specified xlsx file or an object (which is stored in an RData file). Users can choose the test results produced in the final report.
+The final report will be written into a user-specified xlsx file or/and an object (which is stored in an RData file). Users can choose the test results produced in the final report.
 }
 \examples{
 library("rio")
