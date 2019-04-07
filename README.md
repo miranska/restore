@@ -44,7 +44,7 @@ To install it locally:
 2. In R console, run the following command:
 
 ```
-devtools::install("The full path of the source code", repos=NULL, type='source')
+devtools::install("The full path to the source code", repos=NULL, type='source')
 ```
 
 ## Running the tests
