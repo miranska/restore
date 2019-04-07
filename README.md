@@ -1,7 +1,7 @@
 # RESTORE
 
 <!-- One Paragraph of project description goes here -->
-RESTORE stands for regression testing of two dataset migration. Given two datasets in a scenario where a legacy dataset will be replaced by a target dataset, we will analyze the difference between them based on a number of tests such as:
+RESTORE stands for REgreSsion Testing tool fOR datasEts. Given two datasets in a scenario where an old version of a dataset is replaced by a new version of a dataset, we analyze the difference between them based on a number of tests, such as
 
    1. Distribution test: Kolmogorov-Smirnov test;
    2. Correlation tests: Pearson correlation coefficient and Spearman's correlation;
@@ -13,7 +13,7 @@ RESTORE stands for regression testing of two dataset migration. Given two datase
    8. Hybrid tests, which shows features that appear in Kolmogorov-Smirnov test, mean relative error test, and correlation tests;
    9. Ranking, which shows the ranking of variables that appear in Kolmogorov-Smirnov test, mean relative error test, and correlation tests.
 
-The final report will be written into a user-specified `xlsx` file or an object (which is stored in an `RData` file). Users can choose the test results produced in the final report.
+These tests help us assess if discrepancies in two versions of the dataset are attributed to the natural evolution of the data or to errors in data transformations. The former is expected and can be ignored, while the latter is a defect and should be corrected. RESTORE generates a report that helps an analyst to differentiate between these two cases. Our [study](https://arxiv.org/pdf/1903.03676.pdf) suggests that RESTORE enables fast and efficient detection of errors in the data as well as decreases the cost of testing.
 
 ## Announcements
 
