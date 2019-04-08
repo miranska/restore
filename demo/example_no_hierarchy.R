@@ -2,7 +2,7 @@
 ##detach(package:readr, unload=TRUE)
 library(rio)
 
-#set relative paths to input and output dirs
+# set relative paths to input and output dirs
 input_dir <- './data/'
 output_dir <- './inst/extdata/'
 
@@ -16,11 +16,11 @@ metric_thresholds <- import(paste(input_dir, 'restore_thresholds.RData', sep = '
 # output file
 final_report <- paste(output_dir, 'analysis_results_flat_hierarchy.xlsx', sep = '')
 
-# If you would like to save the output in RData format, then comment final_report 
-# and uncomment final_data variable.
-#final_data <- paste(output_dir, 'analysis_results_flat_hierarchy.RData', sep = '')
+# save the output in RData format
+# NOTE: you can choose one or both of final_report and final_data
+final_data <- paste(output_dir, 'analysis_results_flat_hierarchy.RData', sep = '')
 
-#let us remove the "GEO" column to mimic flat hierarchy
+# let us remove the "GEO" column to mimic flat hierarchy
 old_dataset$GEO <- NULL
 new_dataset$GEO <- NULL
 
@@ -28,8 +28,5 @@ test_two_datasets(legacy_df = old_dataset,
                   target_df = new_dataset,
                   thresholds_df = metric_thresholds,
                   final_report = final_report,
-                  #final_data = final_data,
+                  final_data = final_data,
                   key_col = key)
-
-# If you would like to save the output in RData format, then comment final_report 
-# parameter and uncomment final_data parameter in the test_two_datasets.
