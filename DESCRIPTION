@@ -2,7 +2,7 @@ Package: RESTORE
 Type: Package
 Title: Regression testing for dataset migration
 Version: 0.1.0
-Author: Andriy Miranskyy and Lei Zhang
+Author: Sean Howard, Krittika Mahajan, Andriy Miranskyy, Tom Montpool, Jessica Moore, Lei Zhang
 Maintainer: Andriy Miranskyy <avm@ryerson.ca> and Lei Zhang <leizhang@ryerson.ca>
 Description: This is a package of regression testing for dataset migration. Given a scenario where a legacy dataset will be replaced by a target dataset, we will analyze the difference between them based on following tests:
   1. Distribution test: Kolmogorov-Smirnov test;
