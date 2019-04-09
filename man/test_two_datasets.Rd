@@ -8,7 +8,7 @@ test_two_datasets(legacy_file = NULL, legacy_df = NULL,
   target_file = NULL, target_df = NULL, hier = NULL,
   hier_df = NULL, hier_pair = NULL, hier_pair_df = NULL,
   thresholds = NULL, thresholds_df = NULL, final_report = NULL,
-  final_data = NULL, key_col, hier_col, report_join = TRUE,
+  final_data = NULL, key_col, hier_col = NULL, report_join = TRUE,
   report_hybrid = TRUE, report_magnitude = TRUE, report_mre = TRUE,
   report_spearman = TRUE, report_pearson = TRUE,
   report_distribution = TRUE, report_rank = TRUE,
@@ -68,11 +68,61 @@ test_two_datasets(legacy_file = NULL, legacy_df = NULL,
 }
 \description{
 This is a package of regression testing for dataset migration. Given a scenario where a legacy dataset will be replaced by a target dataset, we will analyze the difference between them based on following tests:
-1. Distribution test: Kolmogorov-Smirnov test.
-2. Correlation tests: Pearson correlation coefficient and Spearman's correlation.
-3. Mean relative errors.
-4. The difference between two hierarchical pairs in Spearman's test.
-5. Features that have NA values.
-6. Hybrid tests, which shows features that appear in Kolmogorov-Smirnov test, mean relative error test, and correlation tests.
-The final report will be written into a user-specified xlsx file or an object (which is stored in an RData file). Users can choose the test results produced in the final report.
+1. Distribution test: Kolmogorov-Smirnov test;
+2. Correlation tests: Pearson correlation coefficient and Spearman's correlation;
+3. Different variables and records;
+4. Magnitude comparison;
+5. Mean relative errors;
+6. The difference between two hierarchical pairs in Spearman's test;
+7. Features that have NA values;
+8. Hybrid tests, which shows features that appear in Kolmogorov-Smirnov test, mean relative error test, and correlation tests;
+9. Ranking, which shows the ranking of variables that appear in Kolmogorov-Smirnov test, mean relative error test, and correlation tests.
+The final report will be written into a user-specified xlsx file or/and an object (which is stored in an RData file). Users can choose the test results produced in the final report.
+}
+\examples{
+library("rio")
+
+# Let us first look at the hierarchical case
+
+old_file <- '../data/restore_old.RData'
+new_file <- '../data/restore_new.RData'
+geo_hier <- '../data/restore_geo_hierarchies.RData'
+geo_pair <- '../data/restore_geo_pairs.RData'
+thresholds <- '../data/restore_thresholds.RData'
+final_report <- '../inst/extdata/analysis_results_hierarchy.xlsx'
+key <- 'CODE'
+hierarchy <-'GEO'
+
+old_file <- import(old_file)
+new_file <- import(new_file)
+geo_hier <- import(geo_hier)
+geo_pair <- import(geo_pair)
+thresholds <- import(thresholds)
+
+test_two_datasets(legacy_df = old_file,
+                  target_df = new_file,
+                  hier_df = geo_hier,
+                  hier_pair_df = geo_pair,
+                  thresholds_df = thresholds,
+                  final_report = final_report,
+                  key_col = key,
+                  hier_col = hierarchy)
+                  
+# Now let us consider the flat hierarchy case
+# To save space, we will reuse old_file, new_file, thresholds, and key variables.
+
+# Remove the hierarchy columns:
+old_file$GEO <- NULL
+new_file$GEO <- NULL
+
+final_report <- '../inst/extdata/analysis_results_flat_hierarchy.xlsx'
+
+# Note that a dummy column GEO will be generated in the report
+
+test_two_datasets(legacy_df = old_file,
+                  target_df = new_file,
+                  thresholds_df = thresholds,
+                  final_report = final_report,
+                  key_col = key)
+
 }
